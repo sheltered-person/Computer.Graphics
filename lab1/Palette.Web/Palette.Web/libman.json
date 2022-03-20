@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "filesystem",
+  "libraries": [
+    {
+      "library": "wwwroot/lib/Coloris-main/",
+      "destination": "wwwroot/lib/Coloris-main/"
+    }
+  ]
+}

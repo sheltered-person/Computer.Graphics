@@ -1,0 +1,104 @@
+﻿@model Colors
+
+<div class="container">
+    <div class="row justify-content-center">
+        <form id="hexForm" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="PostHex">
+            <input class="color-box" type="color" asp-for="Hex"/>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="text-center">
+                RGB
+            </div>
+            <form id="rgbForm" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="PostRgb">
+                <div class="mb-3">
+                    <label class="form-label">Red</label>
+                    <input class="form-control" type="number" asp-for="RGB.Red" min="0" max="255"/>
+                    <span asp-validation-for="RGB.Red" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Green</label>
+                    <input class="form-control" type="number" asp-for="RGB.Green" min="0" max="255"/>
+                    <span asp-validation-for="RGB.Green" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Blue</label>
+                    <input class="form-control" type="number" asp-for="RGB.Blue" min="0" max="255"/>
+                    <span asp-validation-for="RGB.Blue" class="text-danger"></span>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <div class="text-center">
+                CMYK
+            </div>
+            <form id="cmykForm" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="PostCmyk">
+                <div class="mb-3">
+                    <label class="form-label">Cyan</label>
+                    <input class="form-control" type="number" asp-for="CMYK.Cyan" min="0" max="100"/>
+                    <span asp-validation-for="CMYK.Cyan" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Magenta</label>
+                    <input class="form-control" type="number" asp-for="CMYK.Magenta" min="0" max="100"/>
+                    <span asp-validation-for="CMYK.Magenta" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Yellow</label>
+                    <input class="form-control" type="number" asp-for="CMYK.Yellow" min="0" max="100"/>
+                    <span asp-validation-for="CMYK.Yellow" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Key</label>
+                    <input class="form-control" type="number" asp-for="CMYK.Key" min="0" max="100"/>
+                    <span asp-validation-for="CMYK.Key" class="text-danger"></span>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <div class="text-center">
+                HSV
+            </div>
+            <form id="hsvForm" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="PostHsv">
+                <div class="mb-3">
+                    <label class="form-label">Hue</label>
+                    <input class="form-control" type="number" asp-for="HSV.Hue" min="0" max="360"/>
+                    <span asp-validation-for="HSV.Hue" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Saturation</label>
+                    <input class="form-control" type="number" asp-for="HSV.Saturation" min="0" max="100"/>
+                    <span asp-validation-for="HSV.Saturation" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Value</label>
+                    <input class="form-control" type="number" asp-for="HSV.Value" min="0" max="100"/>
+                    <span asp-validation-for="HSV.Value" class="text-danger"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('form :input').blur(function () {
+                $(this).closest('form').submit();
+            });
+
+            $('form :input').keyup(function (event) {
+                var $this = $(this);
+
+                if ($this.is(":focus") && event.key == "Enter") {
+                    $(this).closest('form').submit();
+                }
+            });
+
+            $('form :input[type="number"]').mouseup(function (event) {
+                $(this).closest('form').submit();
+            });
+        });
+    </script>
+}
